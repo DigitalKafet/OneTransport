@@ -1,14 +1,13 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {createAppContainer, createSwitchNavigator} from 'react-navigation'
-import {createStackNavigator} from 'react-navigation-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 import React from 'react'
-import LoadingScreen from './Screens/LoadingScreen'
-import LoginScreen from './Screens/LoginScreen'
-import RegisterScreen from './Screens/RegisterScreen'
-import HomeScreen from './Screens/HomeScreen'
-import SearchScreen from './Components/SearchScreen'
-import TabHome from './Components/TabHome'
-import data from './Helpers/transportData'
+import LoadingScreen from './screens/LoadingScreen'
+import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
+import SettingsScreen from './screens/SettingsScreen'
+import SearchScreen from './screens/SearchScreen'
+import data from './helpers/transportData'
 
 import * as firebase from 'firebase'
 import { NavigationContainer } from '@react-navigation/native'
@@ -35,7 +34,7 @@ const HomeTabNavigator = () => {
     <NavigationContainer>
   <HomeTab.Navigator>
     <HomeTab.Screen name='Rechercher' component={SearchScreen}/>
-    <HomeTab.Screen name='Paramètres' component={HomeScreen}/>
+    <HomeTab.Screen name='Paramètres' component={SettingsScreen}/>
   </HomeTab.Navigator>
   </NavigationContainer>
   )

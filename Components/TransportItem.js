@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text,TouchableHighlight } from 'react-native'
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native'
 
 class TransportItem extends React.Component {
     render() {

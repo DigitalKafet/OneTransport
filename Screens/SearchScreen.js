@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button, TextInput, FlatList, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
-import transports from '../Helpers/transportData'
-import TransportItem from './TransportItem'
+import transports from '../helpers/transportData'
+import TransportItem from '../components/TransportItem'
 
 class SearchScreen extends React.Component {
     render() {                                                                       
