@@ -6,17 +6,13 @@ import TransportItem from './TransportItem'
 class SearchScreen extends React.Component {
     render() {                                                                       
        return (
-        <KeyboardAvoidingView 
-            style={{ flex: 1 }}
-            behavior= 'padding'
-            enabled={true}> 
            <View style={styles.globalview}>
                 <View style={styles.searchview}>
                     <Text style={styles.label}>Départ</Text>
                     <TextInput placeholder="D'où partez-vous ?" placeholderTextColor="#eeeeee" style={styles.textinput} />
                     <Text style={styles.label}>Arrivée</Text>
                     <TextInput placeholder="Où allez-vous ?" placeholderTextColor="#eeeeee" style={styles.textinput}/>
-                     <TouchableHighlight ref='touch' style={styles.button} onPress={() => {}}>
+                     <TouchableHighlight style={styles.button} onPress={() => {}}>
                          <Text style={styles.button_text}>Rechercher</Text>
                      </TouchableHighlight>
                </View> 
@@ -28,7 +24,6 @@ class SearchScreen extends React.Component {
                     />
                 </View>        
            </View>
-        </KeyboardAvoidingView> 
        ) 
     }
 }
