@@ -1,13 +1,14 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
-import React from 'react'
 import LoadingScreen from './screens/LoadingScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import SearchScreen from './screens/SearchScreen'
-import data from './helpers/transportData'
+import LanguageScreen from './screens/settings/LanguageScreen'
 
 import * as firebase from 'firebase'
 import { NavigationContainer } from '@react-navigation/native'
@@ -27,22 +28,26 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const HomeTab = createBottomTabNavigator();
+const SettingsStackNavigator = createStackNavigator({
+  Settings: SettingsScreen,
+  Language: LanguageScreen
+},
+  {
+      initialRouteName: 'Settings'
+  });
 
-const HomeTabNavigator = () => {
-  return(
-    <NavigationContainer>
-  <HomeTab.Navigator>
-    <HomeTab.Screen name='Rechercher' component={SearchScreen}/>
-    <HomeTab.Screen name='Paramètres' component={SettingsScreen}/>
-  </HomeTab.Navigator>
-  </NavigationContainer>
-  )
-}
-
-const AppStack = createStackNavigator({
-  Search: HomeTabNavigator,
-})
+const AppTabNavigator = createBottomTabNavigator({
+  Search: {
+    screen: SearchScreen,
+  },
+  SettingsNav: {
+    screen: SettingsStackNavigator,
+  }
+}, 	  
+  {
+	tabBarPosition :'bottom',
+	initialRouteName:'Search'
+  })
 
 const AuthStack = createStackNavigator({
   Login: LoginScreen,
@@ -53,7 +58,7 @@ export default createAppContainer (
   createSwitchNavigator(
     {
       Loading: LoadingScreen,
-      App: AppStack,
+      App: AppTabNavigator,
       Auth: AuthStack
     },
     {

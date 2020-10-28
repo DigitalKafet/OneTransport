@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import * as firebase from 'firebase';
+import { ListItem } from 'react-native-elements';
+import LanguageScreen from './settings/LanguageScreen';
+import RegisterScreen from './RegisterScreen';
+import LoginScreen from './LoginScreen';
+import SearchScreen from './SearchScreen';
 
 export default class SettingsScreen extends React.Component {
     state = {
         email: '',
-        displayName:''
+        displayName: ''
     }
 
     componentDidMount() {
@@ -14,27 +19,35 @@ export default class SettingsScreen extends React.Component {
         this.setState({ email, displayName });
     }
 
-    signOutUser = () => {
-        firebase.auth().signOut();
-    };
+    list = [
+        {
+            name: 'Langues',
+            action: () => {
+                this.props.navigation.navigate('Language');
+            }
+        },
+        {
+            name: 'Se déconnecter',
+            action: () => {
+                firebase.auth().signOut();
+            }
+        }
+    ];
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Bonjour {this.state.displayName} !</Text>
-
-                <TouchableOpacity style={{marginTop: 32}} onPress={this.signOutUser}>
-                    <Text>Se déconnecter</Text>
-                </TouchableOpacity>
+            <View>
+                {
+                    this.list.map((l, i) => (
+                        <ListItem key={i} onPress={() => { l.action() }} bottomDivider>
+                            <ListItem.Content>
+                                <ListItem.Title>{l.name}</ListItem.Title>
+                            </ListItem.Content>
+                        </ListItem>
+                    ))
+                }
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});

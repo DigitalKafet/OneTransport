@@ -16,9 +16,6 @@ class TransportItem extends React.Component {
                 </TouchableHighlight>
             </View>
         </View>
-            
-                
-     
         )
     }
 }
